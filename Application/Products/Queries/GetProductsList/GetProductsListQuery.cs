@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Application.Interfaces;
+using Application.Interfaces.Persistence;
 
 namespace Application.Products.Queries.GetProductsList
 {
     public class GetProductsListQuery: IGetProductsListQuery
     {
-	    private readonly IDatabaseService _database;
+	    private readonly IProductRepository _productRepository;
 
-		public GetProductsListQuery(IDatabaseService database)
+		public GetProductsListQuery(IProductRepository productRepository)
 		{
-			_database = database;
+			_productRepository = productRepository;
 		}
 
 		public List<ProductModel> Execute()
 		{
-			var products = _database.Products.Select(p => new ProductModel
+			var products = _productRepository.GetAll().Select(p => new ProductModel
 			{
 				Id = p.Id,
 				Name = p.Name,
