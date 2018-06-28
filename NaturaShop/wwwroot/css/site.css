@@ -1,0 +1,126 @@
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+	font-size: 20px;
+	line-height: 1.4;
+}
+
+.nt-navbar {
+	position: fixed;
+	width: 100%;
+	z-index: 1030;
+	margin-bottom: 20px;
+	top: 0;
+}
+
+	.nt-navbar.inverse {
+		background-color: #222;
+	}
+
+.nt-navbar-container {
+	display: grid;
+	grid-template-columns: 0.2fr 70px 70px auto 1fr;
+}
+
+.nt-navbar a {
+	color: #9d9d9d;
+	text-decoration: none;
+}
+
+	.nt-navbar a:hover {
+		color: #fff;
+	}
+
+.nt-navbar-brand {
+	padding: 15px;
+	font-size: 18px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.nt-navbar-nav {
+	margin: auto;
+}
+
+.nt-navbar-toggle {
+	display: none;
+}
+
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+	width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+	margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+	/* Hide captions */
+	.carousel-caption {
+		display: none;
+	}
+
+	.nt-navbar-toggle {
+		display: inline-block;
+		background-color: #222;
+		color: #9d9d9d;
+		padding: 9px 10px;
+		border: 1px solid #333;
+		-ms-border-radius: 2px;
+		border-radius: 5px;
+		grid-row: 1;
+		grid-column: 2;
+		width: 50px;
+		height: 42px;
+		margin: auto;
+	}
+
+	.nt-navbar-container {
+		display: grid;
+		left: 10%;
+		grid-template: 50px / 80% 20%;
+		/*grid-template: 50px repeat(3, 30px)/ 80% 20%;*/
+	}
+
+		.nt-navbar-container > .nt-navbar-nav {
+			visibility: hidden;
+			color: transparent;
+			height: 0;
+			padding-left: 1em;
+			transition: height 1s, visibility 0.8s;
+		}
+
+		.nt-navbar-container.nt-open-menu > .nt-navbar-nav {
+			visibility: visible;
+			height: 25px;
+			color: #9d9d9d;
+			padding-left: 1em;
+			transition: height 1s, visibility 1s, color 1s;
+		}
+
+	.nt-navbar-nav {
+		margin: 0;
+		grid-column: 1 / -1;
+		border-top: 1px solid #333;
+	}
+
+	.nt-navbar-brand {
+		text-align: justify;
+	}
+
+}
