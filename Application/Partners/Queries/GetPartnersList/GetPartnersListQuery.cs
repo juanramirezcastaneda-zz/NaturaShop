@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Application.Interfaces;
-using Domain.Partners;
+using Application.Interfaces.Persistence;
 
 namespace Application.Partners.Queries.GetPartnersList
 {
 	public class GetPartnersListQuery : IGetPartnersListQuery
 	{
-		private readonly IDatabaseService _database;
+		private readonly IPartnersRepository _partnersRepository;
 
-		public GetPartnersListQuery(IDatabaseService database)
+		public GetPartnersListQuery(IPartnersRepository partnersRepository)
 		{
-			_database = database;
+			_partnersRepository = partnersRepository;
 		}
 
 		public List<PartnerModel> Execute()
 		{
-			var partners = _database.Partners.Select(ptn => new PartnerModel
+			var partners = _partnersRepository.GetAll().Select(ptn => new PartnerModel
 			{
 				Id = ptn.Id,
 				Name = ptn.Name, 
