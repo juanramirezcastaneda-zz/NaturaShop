@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Linq;
 using Domain.Customers;
 using Domain.Partners;
@@ -9,28 +8,23 @@ using Domain.Sales;
 namespace Persistence.Shared
 {
 	public class DatabaseInitializer
-		   //: CreateDatabaseIfNotExists<DatabaseContext>
 	{
-		//protected override void Seed(DatabaseContext database)
-		//{
-		//	base.Seed(database);
-
-		//	CreateCustomers(database);
-
-		//	CreatePartners(database);
-
-		//	CreateProducts(database);
-
-		//	CreateSales(database);
-		//}
+		public DatabaseInitializer(DatabaseContext database)
+		{
+			database.Database.EnsureCreated();
+			CreateCustomers(database);
+			CreatePartners(database);
+			CreateProducts(database);
+			CreateSales(database);
+		}
 
 		private void CreateCustomers(DatabaseContext database)
 		{
-			database.Customers.Add(new Domain.Customers.Customer() { Name = "Martin Fowler" });
+			database.Customers.Add(new Customer() { Name = "Martin Fowler" });
 
-			database.Customers.Add(new Domain.Customers.Customer() { Name = "Uncle Bob" });
+			database.Customers.Add(new Customer() { Name = "Uncle Bob" });
 
-			database.Customers.Add(new Domain.Customers.Customer() { Name = "Kent Beck" });
+			database.Customers.Add(new Customer() { Name = "Kent Beck" });
 
 			database.SaveChanges();
 		}
