@@ -4,6 +4,9 @@ using Domain.Partners;
 using Domain.Products;
 using Domain.Sales;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Customers;
+using Persistence.Partners;
+using Persistence.Products;
 
 namespace Persistence.Shared
 {
@@ -16,6 +19,15 @@ namespace Persistence.Shared
 		public DbSet<Product> Products { get; set; }
 
 		public DbSet<Sale> Sales { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+			modelBuilder.ApplyConfiguration(new PartnersConfiguration());
+			modelBuilder.ApplyConfiguration(new ProductsConfiguration());
+	
+			base.OnModelCreating(modelBuilder);
+		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
