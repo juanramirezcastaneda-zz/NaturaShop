@@ -20,11 +20,12 @@
 <body>
 	<nav class="nt-navbar inverse">
 		<div class="nt-navbar-container">
-			<a asp-page="/Index" class="nt-navbar-brand">NaturaShop</a>
-			<a asp-page="/Index" class="nt-navbar-nav">Home</a>
-			<a asp-page="/Customers" class="nt-navbar-nav">Customers</a>
-			<a asp-page="/About" class="nt-navbar-nav">About</a>
-			<a asp-page="/Contact" class="nt-navbar-nav">Contact</a>
+			<a asp-area="" asp-controller="Home" asp-action="Index" class="nt-navbar-brand">NaturaShop</a>
+			<a asp-area="" asp-controller="Home" asp-action="Index" class="nt-navbar-nav">Home</a>
+			<a asp-area="" asp-page="/Customers" class="nt-navbar-nav">Customers</a>
+			<a asp-area="" asp-page="/Employee" class="nt-navbar-nav">Employee</a>
+			<a asp-area="" asp-page="/Products" class="nt-navbar-nav">Products</a>
+			<a asp-area="" asp-page="/Sales" class="nt-navbar-nav">Sales</a>
 			<button type="button" class="nt-navbar-toggle" onclick="toggleNavBar(this)">
 				<span class="sr-only">Toggle navigation</span>
 				<i class="fa fa-bars fa-2x"></i>
