@@ -17,9 +17,11 @@ namespace Persistence.Shared
 
 		public DbSet<Sale> Sales { get; set; }
 
-		public DatabaseContext()
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-
+			const string connectionString =
+				"Initial Catalog=NaturaShop;Integrated Security=SSPI;Persist Security Info=False;Data Source=M3078483\\SQLEXPRESS";
+			optionsBuilder.UseSqlServer(connectionString);
 		}
 
 		public new DbSet<T> Set<T>() where T : class, IEntity
