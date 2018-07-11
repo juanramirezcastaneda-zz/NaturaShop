@@ -10,6 +10,13 @@ namespace Persistence.Customers
 	    {
 		    builder.HasKey(c => c.Id);
 		    builder.Property(c => c.Name).IsRequired().HasMaxLength(50);
-		}
+
+		    SeedCustomerData(builder);
+	    }
+
+	    private static void SeedCustomerData(EntityTypeBuilder<Customer> builder)
+	    {
+		    builder.HasData(new Customer {Id = 2, Name = "TestCustomer", PhoneNumber = 7});
+	    }
     }
 }

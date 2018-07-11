@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Customers;
 using Persistence.Partners;
 using Persistence.Products;
+using Persistence.Sales;
 
 namespace Persistence.Shared
 {
@@ -25,7 +26,8 @@ namespace Persistence.Shared
 			modelBuilder.ApplyConfiguration(new CustomerConfiguration());
 			modelBuilder.ApplyConfiguration(new PartnersConfiguration());
 			modelBuilder.ApplyConfiguration(new ProductsConfiguration());
-	
+			modelBuilder.ApplyConfiguration(new SalesConfiguration());
+			
 			base.OnModelCreating(modelBuilder);
 		}
 
