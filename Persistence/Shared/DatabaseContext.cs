@@ -1,9 +1,10 @@
-﻿using System;
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Partners;
 using Domain.Products;
 using Domain.Sales;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 using Persistence.Customers;
 using Persistence.Partners;
 using Persistence.Products;
@@ -21,6 +22,9 @@ namespace Persistence.Shared
 
 		public DbSet<Sale> Sales { get; set; }
 
+		public static readonly LoggerFactory DbLoggerFactory
+			= new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfiguration(new CustomerConfiguration());
@@ -35,7 +39,10 @@ namespace Persistence.Shared
 		{
 			const string connectionString =
 				"Initial Catalog=NaturaShop;Integrated Security=SSPI;Persist Security Info=False;Data Source=M3078483\\SQLEXPRESS";
+
+			optionsBuilder.UseLoggerFactory(DbLoggerFactory);
 			optionsBuilder.UseSqlServer(connectionString);
+			optionsBuilder.EnableSensitiveDataLogging();
 		}
 
 		public new DbSet<T> Set<T>() where T : class, IEntity

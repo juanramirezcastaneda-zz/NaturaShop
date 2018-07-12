@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Application.Interfaces.Persistence;
 using Domain.Common;
-using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Shared
 {
