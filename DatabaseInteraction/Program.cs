@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Application.Interfaces.Persistence;
+using Domain.Customers;
+using Domain.Partners;
 using Domain.Products;
+using Domain.Sales;
+using Microsoft.EntityFrameworkCore;
 using Persistence.Products;
 using Persistence.Shared;
 
@@ -14,8 +18,59 @@ namespace DatabaseInteraction
 		{
 			//InsertProduct();
 			//InsertProducts();
-			var product = ReadProduct();
+			//var product = ReadProduct();
+
+			//InsertSales();
+			//ReadIncludingRelationships();
+			ReadIncludingRelationshipsUsingExplicitLoad();
 			Console.ReadLine();
+		}
+
+		private static void ReadIncludingRelationshipsUsingExplicitLoad()
+		{  
+			using (var context = new DatabaseContext())
+			{
+				var sale = context.Sales.FirstOrDefault();
+				context.Entry(sale).Reference(s => s.Partner).Load();
+			}
+		}
+
+		private static void ReadIncludingRelationships()
+		{
+			using (var context = new DatabaseContext())
+			{
+				var sales = context.Sales.Include(s => s.Customer).ToList(); 	
+			}
+		}
+
+		private static void InsertSales()
+		{
+			using (var context = new DatabaseContext())
+			{
+				var newSale = new Sale
+				{
+					UnitPrice = 5m,
+					Quantity = 1,
+					Date = DateTime.Now,
+					Customer = new Customer
+					{
+						Name = "El Dandi",
+						PhoneNumber = 7887
+					},
+					Partner = new Partner
+					{
+						Name = "Betty",
+						PhoneNumber = 456
+					},
+					Product = new Product
+					{
+						Name = "Almond Milk",
+						Price = 5m
+					}
+				};
+				context.Sales.Add(newSale);
+				context.SaveChanges();
+			}
 		}
 
 		private static void InsertProducts()

@@ -23,7 +23,9 @@ namespace Persistence.Shared
 		public DbSet<Sale> Sales { get; set; }
 
 		public static readonly LoggerFactory DbLoggerFactory
-			= new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
+			= new LoggerFactory(new[] { new ConsoleLoggerProvider((category, level) =>
+				category == DbLoggerCategory.Database.Command.Name 
+				&& level == LogLevel.Information, true) });
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
