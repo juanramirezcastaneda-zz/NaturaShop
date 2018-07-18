@@ -1,4 +1,6 @@
-﻿using Domain.Common;
+﻿using System;
+using System.Linq;
+using Domain.Common;
 using Domain.Partners;
 using Domain.Products;
 using Domain.Sales;
@@ -24,7 +26,7 @@ namespace Persistence.Shared
 
 		public static readonly LoggerFactory DbLoggerFactory
 			= new LoggerFactory(new[] { new ConsoleLoggerProvider((category, level) =>
-				category == DbLoggerCategory.Database.Command.Name 
+				category == DbLoggerCategory.Database.Command.Name
 				&& level == LogLevel.Information, true) });
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,8 +35,17 @@ namespace Persistence.Shared
 			modelBuilder.ApplyConfiguration(new PartnersConfiguration());
 			modelBuilder.ApplyConfiguration(new ProductsConfiguration());
 			modelBuilder.ApplyConfiguration(new SalesConfiguration());
-			
+
+			AddShadowProperties(modelBuilder);
 			base.OnModelCreating(modelBuilder);
+		}
+
+		private static void AddShadowProperties(ModelBuilder modelBuilder)
+		{
+			foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+			{
+				modelBuilder.Entity(entityType.Name).Property<DateTime>("LastModified");
+			}
 		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -54,6 +65,12 @@ namespace Persistence.Shared
 
 		public void Save()
 		{
+			foreach (var entry in ChangeTracker.Entries()
+				.Where(e => e.State == EntityState.Added ||
+							e.State == EntityState.Modified))
+			{
+				entry.Property("LastModified").CurrentValue = DateTime.Now;
+			}
 			SaveChanges();
 		}
 	}

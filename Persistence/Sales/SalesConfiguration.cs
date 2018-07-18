@@ -1,7 +1,4 @@
 ﻿using System;
-using Domain.Customers;
-using Domain.Partners;
-using Domain.Products;
 using Domain.Sales;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -31,7 +28,8 @@ namespace Persistence.Sales
 				ProductId = 4,
 				UnitPrice = 5m,
 				Quantity = 1,
-				TotalPrice = 3m
+				TotalPrice = 3m,
+				LastModified = DateTime.Now.Date.AddDays(-3)
 			});
 		}
 	}
