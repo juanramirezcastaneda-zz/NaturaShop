@@ -16,6 +16,10 @@ namespace Persistence.Shared
 {
 	public class DatabaseContext : DbContext, IDatabaseContext
 	{
+		public DatabaseContext(DbContextOptions<DatabaseContext> options)
+			: base(options)
+		{ }
+
 		public DbSet<Domain.Customers.Customer> Customers { get; set; }
 
 		public DbSet<Partner> Partners { get; set; }
@@ -46,16 +50,6 @@ namespace Persistence.Shared
 			{
 				modelBuilder.Entity(entityType.Name).Property<DateTime>("LastModified");
 			}
-		}
-
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			const string connectionString =
-				"Initial Catalog=NaturaShop;Integrated Security=SSPI;Persist Security Info=False;Data Source=M3078483\\SQLEXPRESS";
-
-			optionsBuilder.UseLoggerFactory(DbLoggerFactory);
-			optionsBuilder.UseSqlServer(connectionString);
-			optionsBuilder.EnableSensitiveDataLogging();
 		}
 
 		public new DbSet<T> Set<T>() where T : class, IEntity

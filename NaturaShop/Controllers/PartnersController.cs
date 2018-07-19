@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Application.Partners.Queries.GetPartnersList;
-using Application.Products.Queries.GetProductsList;
 using Microsoft.AspNetCore.Mvc;
 
 

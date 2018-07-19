@@ -6,6 +6,7 @@ using Application.Sales.Queries.GetSaleDetail;
 using Application.Sales.Queries.GetSalesList;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Customers;
@@ -29,13 +30,14 @@ namespace NaturaShop
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
-			services.AddDbContext<IDatabaseContext, DatabaseContext>();
+			services.AddDbContext<IDatabaseContext, DatabaseContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("NaturaShopDatabase")));
 
 			services.AddScoped<IProductRepository, ProductsRepository>();
 			services.AddScoped<IPartnersRepository, PartnersRepository>();
 			services.AddScoped<ICustomerRepository, CustomerRepository>();
 			services.AddScoped<ISalesRepository, SalesRepository>();
-			
+
 			services.AddTransient<IGetProductsListQuery, GetProductsListQuery>();
 			services.AddTransient<IGetPartnersListQuery, GetPartnersListQuery>();
 			services.AddTransient<IGetCustomerListQuery, GetCustomerListQuery>();

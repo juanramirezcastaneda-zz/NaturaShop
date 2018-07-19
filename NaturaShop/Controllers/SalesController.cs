@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Application.Products.Queries.GetProductsList;
 using Application.Sales.Queries.GetSaleDetail;
 using Application.Sales.Queries.GetSalesList;
 using Microsoft.AspNetCore.Mvc;
