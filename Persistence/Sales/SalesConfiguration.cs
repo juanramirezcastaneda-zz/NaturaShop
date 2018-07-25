@@ -27,7 +27,7 @@ namespace Persistence.Sales
 				PartnerId = 3,
 				// ProductId = 4,
 				// UnitPrice = 5m,
-				// Quantity = 1,
+				Quantity = 1,
 				TotalPrice = 3m,
 				LastModified = DateTime.Now.Date.AddDays(-3)
 			});
