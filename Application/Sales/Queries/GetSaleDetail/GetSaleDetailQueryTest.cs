@@ -43,14 +43,21 @@ namespace Application.Sales.Queries.GetSaleDetail
 				PhoneNumber = PartnerPhoneNumber
 			};
 
-			var product = new Product
-			{
-				Id = ProductId,
-				Name = ProductName,
-				Price = ProductPrice
-			};
+            var product = new Product
+            {
+                Id = ProductId,
+                Name = ProductName,
+                Price = ProductPrice
+            };
 
-			var costumer = new Customer
+            var saleproducts = new List<SaleProduct>{
+                new SaleProduct{
+                    Product = product,
+                    ProductId = product.Id
+                }
+            };
+
+            var costumer = new Customer
 			{
 				Id = CostumerId,
 				Name = CustomerName,
@@ -61,8 +68,7 @@ namespace Application.Sales.Queries.GetSaleDetail
 			{
 				Id = SaleId,
 				Partner = partner,
-				Product = product,
-				UnitPrice = SaleUnitPrice,
+				SaleProducts = saleproducts,
 				Date = _saleDateTime,
 				Quantity = SaleQuantity,
 				Customer = costumer

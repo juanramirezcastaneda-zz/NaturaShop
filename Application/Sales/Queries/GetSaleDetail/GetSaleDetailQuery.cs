@@ -23,9 +23,7 @@ namespace Application.Sales.Queries.GetSaleDetail
 					PartnerName = sale.Partner.Name,
 					PartnerPhoneNumber = sale.Partner.PhoneNumber,
 					CustomerName = sale.Customer.Name,
-					ProductName = sale.Product.Name,
 					Quantity = sale.Quantity,
-					UnitPrice = sale.UnitPrice,
 					TotalPrice = sale.TotalPrice
 				}).Single();
 

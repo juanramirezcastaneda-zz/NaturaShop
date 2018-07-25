@@ -1,4 +1,6 @@
-﻿using Domain.Common;
+﻿using System.Collections.Generic;
+using Domain.Common;
+using Domain.Sales;
 
 namespace Domain.Products
 {
@@ -9,5 +11,7 @@ namespace Domain.Products
 		public string Name { get; set; }
 
 		public decimal Price { get; set; }
+	
+		public List<SaleProduct> SaleProducts { get; set; }
 	}
 }

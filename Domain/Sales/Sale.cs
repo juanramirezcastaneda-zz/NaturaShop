@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Domain.Common;
 using Domain.Customers;
 using Domain.Partners;
@@ -9,8 +10,10 @@ namespace Domain.Sales
 	public class Sale : IEntity
 	{
 		private int _quantity;
+
+		private List<SaleProduct> _saleProducts;
+
 		private decimal _totalPrice;
-		private decimal _unitPrice;
 
 		public int Id { get; set; }
 
@@ -20,19 +23,17 @@ namespace Domain.Sales
 
 		public Partner Partner { get; set; }
 
-		public Product Product { get; set; }
-
-		public decimal UnitPrice
-		{
-			get => _unitPrice;
-			set
-			{
-				_unitPrice = value;
+        public List<SaleProduct> SaleProducts
+        {
+            get => _saleProducts;
+            set
+            {
+                _saleProducts = value;
 				UpdateTotalPrice();
-			}
-		}
+            }
+        }
 
-		public decimal TotalPrice
+        public decimal TotalPrice
 		{
 			get => _totalPrice;
 			private set => _totalPrice = value;
@@ -43,15 +44,17 @@ namespace Domain.Sales
 			get => _quantity;
 			set
 			{
-				_quantity = value;
+				_quantity  = value;
 				UpdateTotalPrice();
 			}
 		}
 
 		private void UpdateTotalPrice()
 		{
-			_totalPrice = _unitPrice * _quantity;
+			_totalPrice = 0;
+			_saleProducts.ForEach(sp => {
+				_totalPrice =+ sp.Product.Price;
+			});
 		}
-
 	}
 }

@@ -30,7 +30,7 @@ namespace Application.Sales.Queries.GetSalesList
 		private const int ProductId = 1;
 		private const int ProductPrice = 10;
 		private const int SaleQuantity = 2;
-		private const decimal SaleUnitPrice = 1.4m;
+		// private const decimal SaleUnitPrice = 1.4m;
 		private const decimal SaleTotalPrice = 2.8m;
 
 		[TestInitialize]
@@ -42,6 +42,13 @@ namespace Application.Sales.Queries.GetSalesList
 				Name = ProductName,
 				Price = ProductPrice
 			};
+			
+            var saleproducts = new List<SaleProduct>{
+                new SaleProduct{
+                    Product = product,
+                    ProductId = product.Id
+                }
+            };
 
 			var partner = new Partner()
 			{
@@ -60,10 +67,9 @@ namespace Application.Sales.Queries.GetSalesList
 			var sale1 = new Sale
 			{
 				Id = SaleId,
-				UnitPrice = SaleUnitPrice,
 				Partner = partner,
 				Date = _saleDateTime,
-				Product = product,
+				SaleProducts = saleproducts,
 				Customer = costumer,
 				Quantity = SaleQuantity
 			};
@@ -90,7 +96,7 @@ namespace Application.Sales.Queries.GetSalesList
 			Assert.AreEqual(sale.Quantity, SaleQuantity);
 			Assert.AreEqual(sale.PartnerName, PartnerName);
 			Assert.AreEqual(sale.PartnerPhoneNumber, PartnerPhoneNumber);
-			Assert.AreEqual(sale.UnitPrice, SaleUnitPrice);
+			// Assert.AreEqual(sale.UnitPrice, SaleUnitPrice);
 			Assert.AreEqual(sale.TotalPrice, SaleTotalPrice);
 		}
 	}

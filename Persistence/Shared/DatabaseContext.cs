@@ -39,6 +39,7 @@ namespace Persistence.Shared
 			modelBuilder.ApplyConfiguration(new PartnersConfiguration());
 			modelBuilder.ApplyConfiguration(new ProductsConfiguration());
 			modelBuilder.ApplyConfiguration(new SalesConfiguration());
+			modelBuilder.ApplyConfiguration(new SalesConfiguration());
 
 			AddShadowProperties(modelBuilder);
 			base.OnModelCreating(modelBuilder);
