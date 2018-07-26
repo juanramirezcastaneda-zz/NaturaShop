@@ -25,8 +25,6 @@ namespace Persistence.Sales
 				Date = DateTime.Now.Date.AddDays(-3),
 				CustomerId = 2,
 				PartnerId = 3,
-				// ProductId = 4,
-				// UnitPrice = 5m,
 				Quantity = 1,
 				TotalPrice = 3m,
 				LastModified = DateTime.Now.Date.AddDays(-3)

@@ -20,11 +20,20 @@ namespace Persistence.Products
 		{
 			builder.HasData(new
 			{
-				Id = 4,
+				Id = 1,
 				Name = "TestProduct",
 				Price = 3m,
 				LastModified = DateTime.Now
 			});
+
+			builder.HasData(new
+			{
+				Id = 2,
+				Name = "TestProduct2",
+				Price = 2m,
+				LastModified = DateTime.Now.AddDays(-1)
+			});
+
 		}
 	}
 }

@@ -9,7 +9,24 @@ namespace Persistence.Sales
     {
         public void Configure(EntityTypeBuilder<SaleProduct> builder)
         {
-            builder.HasKey(sp => new { sp.SaleId, sp.ProductId});
+            builder.HasKey(sp => new { sp.SaleId, sp.ProductId });
+            SeedSaleProduct(builder);
+        }
+
+        private void SeedSaleProduct(EntityTypeBuilder<SaleProduct> builder)
+        {
+            builder.HasData(new
+            {
+                SaleId = 1,
+                ProductId = 1,
+                LastModified = DateTime.Now
+            });
+            builder.HasData(new
+            {
+                SaleId = 1,
+                ProductId = 2,
+                LastModified = DateTime.Now
+            });
         }
     }
 }
