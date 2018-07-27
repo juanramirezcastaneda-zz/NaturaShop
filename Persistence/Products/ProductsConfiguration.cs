@@ -5,35 +5,39 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Products
 {
-	public class ProductsConfiguration : IEntityTypeConfiguration<Product>
-	{
-		public void Configure(EntityTypeBuilder<Product> builder)
-		{
-			builder.HasKey(pr => pr.Id);
-			builder.Property(pr => pr.Name).IsRequired().HasMaxLength(50);
-			builder.Property(pr => pr.Price).IsRequired().HasColumnType("decimal(5,2)");
+    public class ProductsConfiguration : IEntityTypeConfiguration<Product>
+    {
+        public void Configure(EntityTypeBuilder<Product> builder)
+        {
+            builder.HasKey(pr => pr.Id);
+            builder.Property(pr => pr.Name).IsRequired().HasMaxLength(50);
+            builder.Property(pr => pr.Price).IsRequired().HasColumnType("decimal(5,2)");
 
-			SeedProductData(builder);
-		}
+            SeedProductData(builder);
+        }
 
-		private static void SeedProductData(EntityTypeBuilder<Product> builder)
-		{
-			builder.HasData(new
-			{
-				Id = 1,
-				Name = "TestProduct",
-				Price = 3m,
-				LastModified = DateTime.Now
-			});
+        private static void SeedProductData(EntityTypeBuilder<Product> builder)
+        {
+            builder.HasData(new
+            {
+                Id = 1,
+                Name = "TestProduct",
+                Price = 3m,
+                LastModified = DateTime.Now,
+                Quantity = 1,
+                TotalPrice = 3m
+            });
 
-			builder.HasData(new
-			{
-				Id = 2,
-				Name = "TestProduct2",
-				Price = 2m,
-				LastModified = DateTime.Now.AddDays(-1)
-			});
+            builder.HasData(new
+            {
+                Id = 2,
+                Name = "TestProduct2",
+                Price = 2m,
+                LastModified = DateTime.Now.AddDays(-1),
+                Quantity = 2,
+                TotalPrice = 4m
+            });
 
-		}
-	}
+        }
+    }
 }

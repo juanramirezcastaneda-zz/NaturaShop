@@ -7,21 +7,19 @@ using Domain.Products;
 
 namespace Domain.Sales
 {
-	public class Sale : IEntity
-	{
-		private int _quantity;
+    public class Sale : IEntity
+    {
+        private List<SaleProduct> _saleProducts;
 
-		private List<SaleProduct> _saleProducts;
+        private decimal _totalPrice;
 
-		private decimal _totalPrice;
+        public int Id { get; set; }
 
-		public int Id { get; set; }
+        public DateTime Date { get; set; }
 
-		public DateTime Date { get; set; }
+        public Customer Customer { get; set; }
 
-		public Customer Customer { get; set; }
-
-		public Partner Partner { get; set; }
+        public Partner Partner { get; set; }
 
         public List<SaleProduct> SaleProducts
         {
@@ -29,32 +27,22 @@ namespace Domain.Sales
             set
             {
                 _saleProducts = value;
-				UpdateTotalPrice();
+                UpdateTotalPrice();
             }
         }
 
         public decimal TotalPrice
-		{
-			get => _totalPrice;
-			private set => _totalPrice = value;
-		}
-
-		public int Quantity
-		{
-			get => _quantity;
-			set
-			{
-				_quantity  = value;
-				UpdateTotalPrice();
-			}
-		}
-
-		private void UpdateTotalPrice()
-		{
-			_totalPrice = 0;
-			_saleProducts.ForEach(sp => {
-				_totalPrice =+ sp.Product.Price;
-			});
-		}
-	}
+        {
+            get => _totalPrice;
+            private set => _totalPrice = value;
+        }
+        
+        private void UpdateTotalPrice()
+        {
+            _totalPrice = 0;
+            _saleProducts.ForEach(sp => {
+                _totalPrice += sp.Product.TotalPrice;
+            });
+        }
+    }
 }
