@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Products;
+using System;
+using System.Collections.Generic;
 
 namespace Application.Sales.Queries.GetSaleDetail
 {
@@ -14,10 +16,8 @@ namespace Application.Sales.Queries.GetSaleDetail
 
 		public uint PartnerPhoneNumber { get; set; }
 
-		public string ProductName { get; set; }
+		public List<ProductSaleDetailModel> Products { get; set; }
 
-		public decimal UnitPrice { get; set; }
-
-		public decimal TotalPrice { get; set; }
+		public decimal TotalSalePrice { get; set; }
 	}
 }

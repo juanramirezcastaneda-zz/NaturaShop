@@ -1,7 +1,6 @@
 ﻿using System;
-using Application.Customers.Queries.GetCustomersList;
-using Application.Partners.Queries.GetPartnersList;
-using Application.Products.Queries.GetProductsList;
+using System.Collections.Generic;
+using Domain.Sales;
 
 namespace Application.Sales.Queries.GetSalesList
 {
@@ -18,5 +17,7 @@ namespace Application.Sales.Queries.GetSalesList
 		public uint PartnerPhoneNumber { get; set; }
 
 		public decimal TotalPrice { get; set; }
+
+		public int NumberOfProducts {get; set;}
 	}
 }

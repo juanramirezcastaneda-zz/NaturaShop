@@ -11,8 +11,7 @@ namespace Persistence.Sales
 		{
 			builder.HasKey(s => s.Id);
 			builder.Property(s => s.Date).IsRequired();
-			builder.Property(s => s.Date).IsRequired();
-
+		
 			builder.Property(s => s.TotalSalePrice).IsRequired().HasColumnType("decimal(5,2)");
 			SeedSalesData(builder);
 		}
@@ -26,7 +25,7 @@ namespace Persistence.Sales
 				CustomerId = 2,
 				PartnerId = 3,
 				LastModified = DateTime.Now.Date.AddDays(-3),
-				TotalSalePrice = 7m
+				TotalSalePrice = 7.00m
 			});
 		}
 	}
