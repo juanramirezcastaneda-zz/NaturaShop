@@ -10,7 +10,7 @@ namespace Application.Sales.Commands.CreateSale.Factory
 	public class SaleFactory : ISaleFactory
 	{
 		public Sale Create(DateTime date, Customer customer, Partner partner,
-			IEnumerable<Product> products, int quantity)
+			IEnumerable<Product> products)
 		{
 			var saleProducts = new List<SaleProduct>();
 			foreach (var product in products)
@@ -27,7 +27,6 @@ namespace Application.Sales.Commands.CreateSale.Factory
 				Customer = customer,
 				Date = date,
 				Partner = partner,
-				Quantity = quantity,
 				SaleProducts = saleProducts
 			};
 		}

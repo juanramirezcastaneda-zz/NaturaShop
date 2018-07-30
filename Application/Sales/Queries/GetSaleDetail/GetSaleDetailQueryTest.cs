@@ -47,7 +47,7 @@ namespace Application.Sales.Queries.GetSaleDetail
             {
                 Id = ProductId,
                 Name = ProductName,
-                Price = ProductPrice
+                UnitPrice = ProductPrice
             };
 
             var saleproducts = new List<SaleProduct>{
@@ -70,7 +70,6 @@ namespace Application.Sales.Queries.GetSaleDetail
 				Partner = partner,
 				SaleProducts = saleproducts,
 				Date = _saleDateTime,
-				Quantity = SaleQuantity,
 				Customer = costumer
 			};
 
@@ -91,7 +90,6 @@ namespace Application.Sales.Queries.GetSaleDetail
 			Assert.AreEqual(detailModel.Id, SaleId);
 			Assert.AreEqual(detailModel.Date, _saleDateTime);
 			Assert.AreEqual(detailModel.CustomerName, CustomerName);
-			Assert.AreEqual(detailModel.Quantity, SaleQuantity);
 			Assert.AreEqual(detailModel.PartnerName, PartnerName);
 			Assert.AreEqual(detailModel.PartnerPhoneNumber, PartnerPhoneNumber);
 			Assert.AreEqual(detailModel.ProductName, ProductName);

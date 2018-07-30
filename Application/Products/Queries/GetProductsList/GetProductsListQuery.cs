@@ -19,7 +19,7 @@ namespace Application.Products.Queries.GetProductsList
 			{
 				Id = p.Id,
 				Name = p.Name,
-				UnitPrice = p.Price
+				UnitPrice = p.UnitPrice
 			});
 
 			return products.ToList();

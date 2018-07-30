@@ -11,7 +11,7 @@ namespace Persistence.Products
         {
             builder.HasKey(pr => pr.Id);
             builder.Property(pr => pr.Name).IsRequired().HasMaxLength(50);
-            builder.Property(pr => pr.Price).IsRequired().HasColumnType("decimal(5,2)");
+            builder.Property(pr => pr.UnitPrice).IsRequired().HasColumnType("decimal(5,2)");
 
             SeedProductData(builder);
         }
@@ -22,20 +22,16 @@ namespace Persistence.Products
             {
                 Id = 1,
                 Name = "TestProduct",
-                Price = 3m,
-                LastModified = DateTime.Now,
-                Quantity = 1,
-                TotalPrice = 3m
+                UnitPrice = 3m,
+                LastModified = DateTime.Now
             });
 
             builder.HasData(new
             {
                 Id = 2,
                 Name = "TestProduct2",
-                Price = 2m,
-                LastModified = DateTime.Now.AddDays(-1),
-                Quantity = 2,
-                TotalPrice = 4m
+                UnitPrice = 2m,
+                LastModified = DateTime.Now.AddDays(-1)
             });
 
         }

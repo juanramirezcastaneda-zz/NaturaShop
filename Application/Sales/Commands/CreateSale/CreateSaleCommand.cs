@@ -45,10 +45,9 @@ namespace Application.Sales.Commands.CreateSale
                 var product = _productRepository.Get(productId);
                 products.Add(product);
             }
-            var quantity = model.Quantity;
-
+  
             var newSale = _saleFactory.Create(date, customer,
-             partner, products, quantity);
+             partner, products);
             _salesRepository.Add(newSale);
 
             //_database.Save();

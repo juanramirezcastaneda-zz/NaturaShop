@@ -11,7 +11,7 @@ namespace Domain.Sales
     {
         private List<SaleProduct> _saleProducts;
 
-        private decimal _totalPrice;
+        private decimal _totalSalePrice;
 
         public int Id { get; set; }
 
@@ -27,22 +27,20 @@ namespace Domain.Sales
             set
             {
                 _saleProducts = value;
-                UpdateTotalPrice();
+                UpdateTotalSalePrice();
             }
         }
 
-        public decimal TotalPrice
+        public decimal TotalSalePrice
         {
-            get => _totalPrice;
-            private set => _totalPrice = value;
+            get => _totalSalePrice;
+            private set => _totalSalePrice = value;
         }
-        
-        private void UpdateTotalPrice()
+
+        private void UpdateTotalSalePrice()
         {
-            _totalPrice = 0;
-            _saleProducts.ForEach(sp => {
-                _totalPrice += sp.Product.TotalPrice;
-            });
+            _totalSalePrice = 0;
+            _saleProducts.ForEach(sp => _totalSalePrice += sp.TotalProductPrice);
         }
     }
 }

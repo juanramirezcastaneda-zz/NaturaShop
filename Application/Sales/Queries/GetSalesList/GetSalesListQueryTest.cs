@@ -12,92 +12,105 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Application.Sales.Queries.GetSalesList
 {
-	[TestClass]
-	public class GetSalesListQueryTest
-	{
-		private GetSalesListQuery _query;
-		private AutoMoqer _mocker;
+    [TestClass]
+    public class GetSalesListQueryTest
+    {
+        private GetSalesListQuery _query;
+        private AutoMoqer _mocker;
 
-		private const int SaleId = 1;
-		private const int CustomerId = 7;
-		private const uint CustomerPhoneNumber = 3103931978;
-		private const string CustomerName = "Juan";
-		private const string PartnerName = "Lina";
-		private const int PartnerId = 4;
-		private const uint PartnerPhoneNumber = 3117336812;
-		private readonly DateTime _saleDateTime = new DateTime(2017, 9, 9);
-		private const string ProductName = "Sunscreen";
-		private const int ProductId = 1;
-		private const int ProductPrice = 10;
-		private const int SaleQuantity = 2;
-		// private const decimal SaleUnitPrice = 1.4m;
-		private const decimal SaleTotalPrice = 2.8m;
+        private const int SaleId = 1;
+        private const int CustomerId = 7;
+        private const uint CustomerPhoneNumber = 3103931978;
+        private const string CustomerName = "Juan";
+        private const string PartnerName = "Lina";
+        private const int PartnerId = 4;
+        private const uint PartnerPhoneNumber = 3117336812;
+        private readonly DateTime _saleDateTime = new DateTime(2017, 9, 9);
+        private const string ProductName = "Sunscreen";
+        private const string ProductName2 = "Lotion";
+        private const int ProductId = 1;
+        private const int ProductId2 = 2;
+        private const int ProductUnitPrice = 10;
+        private const int ProductUnitPrice2 = 5;
+        private const int ProductQuantity1 = 1;
+        private const int ProductQuantity2 = 2;
+        private const decimal SaleTotalPrice = 2.8m;
 
-		[TestInitialize]
-		public void SetUp()
-		{
-			var product = new Product
-			{
-				Id = ProductId,
-				Name = ProductName,
-				Price = ProductPrice
-			};
-			
+        [TestInitialize]
+        public void SetUp()
+        {
+            var product = new Product
+            {
+                Id = ProductId,
+                Name = ProductName,
+                UnitPrice = ProductUnitPrice,
+            };
+
+            var product2 = new Product
+            {
+                Id = ProductId2,
+                Name = ProductName2,
+                UnitPrice = ProductUnitPrice2
+            };
+
             var saleproducts = new List<SaleProduct>{
                 new SaleProduct{
                     Product = product,
                     ProductId = product.Id
+                },
+                new SaleProduct{
+                    Product = product2,
+                    ProductId = product2.Id
                 }
             };
 
-			var partner = new Partner()
-			{
-				Id = PartnerId,
-				Name = PartnerName,
-				PhoneNumber = PartnerPhoneNumber
-			};
+            var partner = new Partner()
+            {
+                Id = PartnerId,
+                Name = PartnerName,
+                PhoneNumber = PartnerPhoneNumber
+            };
 
-			var costumer = new Customer
-			{
-				Id = CustomerId,
-				Name = CustomerName,
-				PhoneNumber = CustomerPhoneNumber
-			};
+            var costumer = new Customer
+            {
+                Id = CustomerId,
+                Name = CustomerName,
+                PhoneNumber = CustomerPhoneNumber
+            };
 
-			var sale1 = new Sale
-			{
-				Id = SaleId,
-				Partner = partner,
-				Date = _saleDateTime,
-				SaleProducts = saleproducts,
-				Customer = costumer,
-				Quantity = SaleQuantity
-			};
+            var sale1 = new Sale
+            {
+                Id = SaleId,
+                Partner = partner,
+                Date = _saleDateTime,
+                SaleProducts = saleproducts,
+                Customer = costumer
+            };
 
-			var saleList = new List<Sale> { sale1 };
+            var saleList = new List<Sale> { sale1 };
 
-			_mocker = new AutoMoqer();
-			_mocker.GetMock<ISalesRepository>().Setup(sr =>
-				sr.GetAll()).Returns(saleList.AsQueryable());
-			_query = _mocker.Create<GetSalesListQuery>();
-		}
+            _mocker = new AutoMoqer();
+            _mocker.GetMock<ISalesRepository>().Setup(sr =>
+                sr.GetAll()).Returns(saleList.AsQueryable());
+            _query = _mocker.Create<GetSalesListQuery>();
+        }
 
-		[TestMethod]
-		public void CallExecuteReturnsSalesList()
-		{
-			const int expectedSalesCount = 1;
-			var salesList = _query.Execute();
-			var sale = salesList.Single();
+        [TestMethod]
+        public void CallExecuteReturnsSalesList()
+        {
+            const int expectedSalesCount = 1;
+            var salesList = _query.Execute();
+            var sale = salesList.Single();
 
-			Assert.AreEqual(salesList.Count, expectedSalesCount);
-			Assert.AreEqual(sale.Id, SaleId);
-			Assert.AreEqual(sale.Date, _saleDateTime);
-			Assert.AreEqual(sale.CustomerName, CustomerName);
-			Assert.AreEqual(sale.Quantity, SaleQuantity);
-			Assert.AreEqual(sale.PartnerName, PartnerName);
-			Assert.AreEqual(sale.PartnerPhoneNumber, PartnerPhoneNumber);
-			// Assert.AreEqual(sale.UnitPrice, SaleUnitPrice);
-			Assert.AreEqual(sale.TotalPrice, SaleTotalPrice);
-		}
-	}
+            Assert.AreEqual(salesList.Count, expectedSalesCount);
+            Assert.AreEqual(sale.Id, SaleId);
+            Assert.AreEqual(sale.Date, _saleDateTime);
+            Assert.AreEqual(sale.CustomerName, CustomerName);
+            // Assert.AreEqual(sale.Quantity, SaleQuantity);
+            Assert.AreEqual(sale.PartnerName, PartnerName);
+            Assert.AreEqual(sale.PartnerPhoneNumber, PartnerPhoneNumber);
+            // Assert.AreEqual(sale.UnitPrice, SaleUnitPrice);
+            Assert.AreEqual(sale.TotalPrice, SaleTotalPrice);
+        }
+    }
 }

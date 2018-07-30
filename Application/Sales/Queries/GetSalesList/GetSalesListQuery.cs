@@ -24,9 +24,7 @@ namespace Application.Sales.Queries.GetSalesList
 				Date = s.Date,
 				CustomerName = s.Customer.Name,
 				PartnerName = s.Partner.Name,
-				PartnerPhoneNumber = s.Partner.PhoneNumber,
-				TotalPrice = s.TotalPrice,
-				Quantity = s.Quantity
+				PartnerPhoneNumber = s.Partner.PhoneNumber
 			});
 			return sales.ToList();
 		}

@@ -27,7 +27,7 @@ namespace Application.Products.Queries.GetProductsList
 			{
 				Id = ProductId,
 				Name = ProductName,
-				Price = ProductUnitPrice
+				UnitPrice = ProductUnitPrice
 			};
 
 			var productList = new List<Product> { product };

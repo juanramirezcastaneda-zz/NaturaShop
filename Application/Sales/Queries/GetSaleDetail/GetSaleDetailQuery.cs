@@ -22,9 +22,7 @@ namespace Application.Sales.Queries.GetSaleDetail
 					Date = sale.Date,
 					PartnerName = sale.Partner.Name,
 					PartnerPhoneNumber = sale.Partner.PhoneNumber,
-					CustomerName = sale.Customer.Name,
-					Quantity = sale.Quantity,
-					TotalPrice = sale.TotalPrice
+					CustomerName = sale.Customer.Name
 				}).Single();
 
 			return saleDetail;

@@ -9,7 +9,5 @@ namespace Application.Sales.Commands.CreateSale
 		public int PartnerId { get; set; }
 
 		public List<int> ProductIds { get; set; }
-
-		public int Quantity { get; set; }
 	}
 }

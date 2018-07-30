@@ -19,13 +19,17 @@ namespace Persistence.Sales
             {
                 SaleId = 1,
                 ProductId = 1,
-                LastModified = DateTime.Now
+                LastModified = DateTime.Now,
+                Quantity = 1,
+                TotalProductPrice = 3m
             });
             builder.HasData(new
             {
                 SaleId = 1,
                 ProductId = 2,
-                LastModified = DateTime.Now
+                LastModified = DateTime.Now,
+                Quantity = 2,
+                TotalProductPrice = 4m
             });
         }
     }
