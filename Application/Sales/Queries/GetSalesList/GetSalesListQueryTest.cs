@@ -34,7 +34,7 @@ namespace Application.Sales.Queries.GetSalesList
         private const int ProductUnitPrice2 = 5;
         private const int ProductQuantity1 = 1;
         private const int ProductQuantity2 = 2;
-        private const decimal SaleTotalPrice = 2.8m;
+        private const decimal SaleTotalPrice = 30;
 
         [TestInitialize]
         public void SetUp()
@@ -53,14 +53,18 @@ namespace Application.Sales.Queries.GetSalesList
                 UnitPrice = ProductUnitPrice2
             };
 
-            var saleproducts = new List<SaleProduct>{
+            var saleProducts = new List<SaleProduct>{
                 new SaleProduct{
                     Product = product,
-                    ProductId = product.Id
+                    ProductId = product.Id,
+                    Quantity = ProductQuantity1, 
+                    TotalProductPrice = ProductQuantity1 * product.UnitPrice
                 },
                 new SaleProduct{
                     Product = product2,
-                    ProductId = product2.Id
+                    ProductId = product2.Id,
+                    Quantity = ProductQuantity2, 
+                    TotalProductPrice = ProductQuantity2 * product.UnitPrice
                 }
             };
 
@@ -83,7 +87,7 @@ namespace Application.Sales.Queries.GetSalesList
                 Id = SaleId,
                 Partner = partner,
                 Date = _saleDateTime,
-                SaleProducts = saleproducts,
+                SaleProducts = saleProducts,
                 Customer = costumer
             };
 
@@ -106,10 +110,8 @@ namespace Application.Sales.Queries.GetSalesList
             Assert.AreEqual(sale.Id, SaleId);
             Assert.AreEqual(sale.Date, _saleDateTime);
             Assert.AreEqual(sale.CustomerName, CustomerName);
-            // Assert.AreEqual(sale.Quantity, SaleQuantity);
             Assert.AreEqual(sale.PartnerName, PartnerName);
             Assert.AreEqual(sale.PartnerPhoneNumber, PartnerPhoneNumber);
-            // Assert.AreEqual(sale.UnitPrice, SaleUnitPrice);
             Assert.AreEqual(sale.TotalPrice, SaleTotalPrice);
         }
     }

@@ -32,6 +32,7 @@ namespace Application.Sales.Queries.GetSaleDetail
 				CustomerName = saleDetail.Customer.Name,
 				PartnerName = saleDetail.Partner.Name,
 				PartnerPhoneNumber = saleDetail.Partner.PhoneNumber,
+				TotalSalePrice = saleDetail.TotalSalePrice
 			};
 			return saleDetailModel;
 		}

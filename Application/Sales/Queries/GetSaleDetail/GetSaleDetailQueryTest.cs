@@ -27,8 +27,7 @@ namespace Application.Sales.Queries.GetSaleDetail
 		private const int CostumerId = 9;
 		private const int SaleQuantity = 2;
 		private const int ProductPrice = 10;
-		private const decimal SaleUnitPrice = 1.23m;
-		private const decimal SaleTotalPrice = 2.46m;
+		private const decimal SaleTotalPrice = 10;
 		private const uint PartnerPhoneNumber = 3117336812;
 		private const uint CostumerPhoneNumber = 3103931978;
 		private readonly DateTime _saleDateTime = new DateTime(2017, 9, 9);
@@ -50,10 +49,12 @@ namespace Application.Sales.Queries.GetSaleDetail
                 UnitPrice = ProductPrice
             };
 
-            var saleproducts = new List<SaleProduct>{
+            var saleProducts = new List<SaleProduct>{
                 new SaleProduct{
                     Product = product,
-                    ProductId = product.Id
+                    ProductId = product.Id,
+					Quantity = 1,
+					TotalProductPrice = product.UnitPrice * 1
                 }
             };
 
@@ -68,17 +69,15 @@ namespace Application.Sales.Queries.GetSaleDetail
 			{
 				Id = SaleId,
 				Partner = partner,
-				SaleProducts = saleproducts,
+				SaleProducts = saleProducts,
 				Date = _saleDateTime,
 				Customer = costumer
 			};
 
-			var saleList = new List<Sale> {sale};
-			
 			_mocker = new AutoMoqer();
 			_mocker.GetMock<ISalesRepository>()
-				.Setup(sr => sr.GetAll())
-				.Returns(saleList.AsQueryable());
+				.Setup(sr => sr.Get(SaleId))
+				.Returns(sale);
 			_query = _mocker.Create<GetSaleDetailQuery>();
 		}
 
@@ -92,9 +91,7 @@ namespace Application.Sales.Queries.GetSaleDetail
 			Assert.AreEqual(detailModel.CustomerName, CustomerName);
 			Assert.AreEqual(detailModel.PartnerName, PartnerName);
 			Assert.AreEqual(detailModel.PartnerPhoneNumber, PartnerPhoneNumber);
-			// Assert.AreEqual(detailModel.ProductName, ProductName);
-			// Assert.AreEqual(detailModel.UnitPrice, SaleUnitPrice);
-			// Assert.AreEqual(detailModel.TotalPrice, SaleTotalPrice);
+			Assert.AreEqual(detailModel.TotalSalePrice, SaleTotalPrice);
 		}
 	}
 }
