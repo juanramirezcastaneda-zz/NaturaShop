@@ -26,7 +26,6 @@ namespace NaturaShop.Controllers
 			return _queryList.Execute();
 		}
 
-		// Export logic to action in the repository
 		[HttpGet("{id}")]
 		public SaleDetailModel GetById(int id)
 		{
