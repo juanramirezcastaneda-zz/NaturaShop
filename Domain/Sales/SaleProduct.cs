@@ -8,9 +8,19 @@ namespace Domain.Sales
     {
         private Product _product;
         private decimal _totalProductPrice;
+        private int _quantity;
+
         public int SaleId { get; set; }
         public int ProductId { get; set; }
-        public int Quantity { get; set; }
+        public int Quantity
+        {
+            get => _quantity;
+            set
+            {
+                _quantity = value;
+                UpdateProductTotalPrice();
+            }
+        }
         public decimal TotalProductPrice
         {
             get => _totalProductPrice;
