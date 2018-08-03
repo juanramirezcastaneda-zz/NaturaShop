@@ -10,6 +10,7 @@ namespace Persistence.Sales
         public void Configure(EntityTypeBuilder<SaleProduct> builder)
         {
             builder.HasKey(sp => new { sp.SaleId, sp.ProductId });
+            builder.Property(sp => sp.TotalProductPrice).HasColumnType("decimal(5,2)");
             SeedSaleProduct(builder);
         }
 
