@@ -25,5 +25,9 @@ namespace Persistence.Sales
                 .Include(s => s.SaleProducts)
                 .ThenInclude(sp => sp.Product).First(s => s.Id == id);
         }
+
+        public void Save(){
+            _database.Save();
+        }
     }
 }

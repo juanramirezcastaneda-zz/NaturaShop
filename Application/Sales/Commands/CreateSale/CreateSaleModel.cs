@@ -8,6 +8,6 @@ namespace Application.Sales.Commands.CreateSale
 
 		public int PartnerId { get; set; }
 
-		public List<int> ProductIds { get; set; }
+		public Dictionary<int, int> ProductIdsQuantities { get; set; }
 	}
 }

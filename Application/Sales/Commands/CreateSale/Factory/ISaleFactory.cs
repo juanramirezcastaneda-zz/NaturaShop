@@ -9,6 +9,6 @@ namespace Application.Sales.Commands.CreateSale.Factory
 {
     public interface ISaleFactory
     {
-	    Sale Create(DateTime date, Customer customer, Partner partner, IEnumerable<Product> products);
+	    Sale Create(DateTime date, Customer customer, Partner partner, IEnumerable<Product> products, Dictionary<int, int> productIdsQuantities);
 	}
 }

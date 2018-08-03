@@ -40,17 +40,17 @@ namespace Application.Sales.Commands.CreateSale
             var partner = _partnersRepository.Get(model.PartnerId);
             var customer = _customerRepository.Get(model.CustomerId);
             var products = new List<Product>();
-            foreach (var productId in model.ProductIds)
+            foreach (var productId in model.ProductIdsQuantities.Keys)
             {
                 var product = _productRepository.Get(productId);
                 products.Add(product);
             }
   
             var newSale = _saleFactory.Create(date, customer,
-             partner, products);
+             partner, products, model.ProductIdsQuantities);
             _salesRepository.Add(newSale);
 
-            //_database.Save();
+            _salesRepository.Save();
         }
     }
 }

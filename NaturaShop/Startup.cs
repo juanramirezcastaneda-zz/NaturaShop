@@ -2,8 +2,11 @@ using Application.Customers.Queries.GetCustomersList;
 using Application.Interfaces.Persistence;
 using Application.Partners.Queries.GetPartnersList;
 using Application.Products.Queries.GetProductsList;
+using Application.Sales.Commands.CreateSale;
+using Application.Sales.Commands.CreateSale.Factory;
 using Application.Sales.Queries.GetSaleDetail;
 using Application.Sales.Queries.GetSalesList;
+using Common.Dates;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -38,11 +41,14 @@ namespace NaturaShop
 			services.AddScoped<ICustomerRepository, CustomerRepository>();
 			services.AddScoped<ISalesRepository, SalesRepository>();
 
+			services.AddTransient<IDateService, DateService>();
 			services.AddTransient<IGetProductsListQuery, GetProductsListQuery>();
 			services.AddTransient<IGetPartnersListQuery, GetPartnersListQuery>();
 			services.AddTransient<IGetCustomerListQuery, GetCustomerListQuery>();
 			services.AddTransient<IGetSalesListQuery, GetSalesListQuery>();
 			services.AddTransient<IGetSaleDetailQuery, GetSaleDetailQuery>();
+			services.AddTransient<ICreateSaleCommand, CreateSaleCommand>();
+			services.AddTransient<ISaleFactory, SaleFactory>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
