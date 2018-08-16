@@ -7,51 +7,36 @@
 	<environment include="Development">
 		<link rel="stylesheet" href="~/node_modules/bootstrap/dist/css/bootstrap.css" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-		<link rel="stylesheet" href="~/css/site.css" />
+		<link rel="stylesheet" href="~/NavBar/NavBar.css" />
+		<link rel="stylesheet" href="~/Application/Application.css" />
 	</environment>
 	<environment exclude="Development">
 		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
 			  asp-fallback-href="~/node_modules/bootstrap/dist/css/bootstrap.min.css"
 			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+		<link rel="stylesheet" href="~/NavBar/NavBar.css" />
+		<link rel="stylesheet" href="~/Application/Application.css" />
 	</environment>
 </head>
 <body>
-	<nav class="nt-navbar inverse">
-		<div class="nt-navbar-container">
-			<a asp-controller="Home" asp-action="Index" class="nt-navbar-brand">NaturaShop</a>
-			<a asp-controller="Home" asp-action="Index" class="nt-navbar-nav">Home</a>
-			<a class="nt-navbar-nav">Customers</a>
-			<a class="nt-navbar-nav">Employee</a>
-			<a class="nt-navbar-nav">Products</a>
-			<a class="nt-navbar-nav">Sales</a>
-			<button type="button" class="nt-navbar-toggle" onclick="toggleNavBar(this)">
-				<span class="sr-only">Toggle navigation</span>
-				<i class="fa fa-bars fa-2x"></i>
-			</button>
-		</div>
-	</nav>
 	<div>
 		@RenderBody()
-		<hr />
-		<footer>
-			<p>&copy; 2018 - NaturaShop</p>
-		</footer>
 	</div>
 
 	<environment include="Development">
 		<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.0/umd/react.development.js"></script>
 		<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.0/umd/react-dom.development.js"></script>
 		<script src="@Url.Content("~/NavBar/NavBar.jsx")"></script>
+		<script src="@Url.Content("~/Footer/Footer.jsx")"></script>
 		<script src="@Url.Content("~/Application/Application.jsx")"></script>
 	</environment>
 	<environment exclude="Development">
 		<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.0/umd/react.development.js"></script>
 		<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.0/umd/react-dom.development.js"></script>
 		<script src="@Url.Content("~/NavBar/NavBar.jsx")"></script>
+		<script src="@Url.Content("~/Footer/Footer.jsx")"></script>
 		<script src="@Url.Content("~/Application/Application.jsx")"></script>
 	</environment>
-
 	@RenderSection("Scripts", required: false)
 </body>
 </html>

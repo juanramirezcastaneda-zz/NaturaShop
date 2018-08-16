@@ -3,7 +3,10 @@ class Application extends React.Component {
         return (
             <div>
                 <NavBar />
-                <div>This is the application component</div>
+                <div className={"container body-content"}>
+                    <div>This is the application component</div>
+                    <Footer name="NaturaShop" />
+                </div>
             </div>
         );
     }
