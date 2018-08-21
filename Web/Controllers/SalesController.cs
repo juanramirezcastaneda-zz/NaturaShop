@@ -4,7 +4,7 @@ using Application.Sales.Commands.CreateSale.Factory;
 using Application.Sales.Queries.GetSaleDetail;
 using Application.Sales.Queries.GetSalesList;
 using Microsoft.AspNetCore.Mvc;
-using NaturaShop.Models;
+using Web.Models;
 
 namespace Web.Controllers
 {
