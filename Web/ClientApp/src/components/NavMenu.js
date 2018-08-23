@@ -1,36 +1,61 @@
-﻿import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import './NavMenu.css';
+﻿import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Glyphicon, Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import "./NavMenu.css";
 
 export class NavMenu extends Component {
-  displayName = NavMenu.name
+  displayName = NavMenu.name;
 
   render() {
     return (
       <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'}>Web</Link>
+            <Link to={"/"}>Web</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <LinkContainer to={'/'} exact>
+            <LinkContainer to={"/"} exact>
               <NavItem>
-                <Glyphicon glyph='home' /> Home
+                <Glyphicon glyph="home" /> Home
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/counter'}>
+            <LinkContainer to={"/counter"}>
               <NavItem>
-                <Glyphicon glyph='education' /> Counter
+                <Glyphicon glyph="education" /> Counter
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/fetchdata'}>
+            <LinkContainer to={"/fetchdata"}>
               <NavItem>
-                <Glyphicon glyph='th-list' /> Fetch data
+                <Glyphicon glyph="th-list" /> Fetch data
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={"/fetchdata"}>
+              <NavItem>
+                <Glyphicon glyph="th-list" /> Fetch data
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={"/customers"}>
+              <NavItem>
+                <Glyphicon glyph="th-list" /> Customers
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={"/sales"}>
+              <NavItem>
+                <Glyphicon glyph="th-list" /> Sales
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={"/partners"}>
+              <NavItem>
+                <Glyphicon glyph="th-list" /> Partners
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={"/products"}>
+              <NavItem>
+                <Glyphicon glyph="th-list" /> Products
               </NavItem>
             </LinkContainer>
           </Nav>
