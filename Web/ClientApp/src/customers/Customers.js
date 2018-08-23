@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { DragDropTable } from "../shared/DragDropTable";
 
 export class Customers extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export class Customers extends Component {
         <em>Loading...</em>
       </p>
     ) : (
-      this.renderCustomerTable(this.state.customers)
+      <DragDropTable />
     );
 
     return (
