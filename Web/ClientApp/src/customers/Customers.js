@@ -42,7 +42,8 @@ export class Customers extends Component {
         <em>Loading...</em>
       </p>
     ) : (
-      <CustomTable src={this.state.customers} />
+      // <CustomTable src={this.state.customers} />
+      <div>This is the customer table</div>
     );
 
     return (
