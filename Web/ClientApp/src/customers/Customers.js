@@ -14,26 +14,26 @@ export class Customers extends Component {
   }
 
   renderCustomerTable(customers) {
-    // return (
-    // <table className="table">
-    //   <thead>
-    //     <tr>
-    //       <th>Id</th>
-    //       <th>Name</th>
-    //       <th>Number</th>
-    //     </tr>
-    //   </thead>
-    //   <tbody>
-    //     {customers.map(customer => (
-    //       <tr key={customer.id}>
-    //         <td>{customer.id}</td>
-    //         <td>{customer.name}</td>
-    //         <td>{customer.phoneNumber}</td>
-    //       </tr>
-    //     ))}
-    //   </tbody>
-    // </table>
-    // );
+    return (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          {customers.map(customer => (
+            <tr key={customer.id}>
+              <td>{customer.id}</td>
+              <td>{customer.name}</td>
+              <td>{customer.phoneNumber}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
   }
 
   render() {
@@ -42,8 +42,9 @@ export class Customers extends Component {
         <em>Loading...</em>
       </p>
     ) : (
-      // <CustomTable src={this.state.customers} />
-      <div>This is the customer table</div>
+      <div>
+        <CustomTable src={this.state.customers} />
+      </div>
     );
 
     return (

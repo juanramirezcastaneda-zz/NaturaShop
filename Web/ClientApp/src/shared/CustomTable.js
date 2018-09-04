@@ -3,26 +3,27 @@ import React, { Component } from "react";
 export class CustomTable extends Component {
   constructor(props) {
     super(props);
-    this.state = { src: props.src };
-    console.log(props.src);
-    console.log(Object.keys(props.src.shift()));
+    const srcArray = props.src ? props.src : [];
+    this.state = { src: srcArray };
   }
   render() {
     return (
       <table>
-        <thead>
+        <thead key="thead">
           <tr>
             <th> the drag drop table</th>
           </tr>
         </thead>
-        <tbody>
-          {this.state.src.map(el => (
-            <tr>
-              <td>{el.Id}</td>
-              <td>{el.Name}</td>
-              <td>{el.PhonerNumber}</td>
-            </tr>
-          ))}
+        <tbody key="tbody">
+          {this.state.src.map(function(el) {
+            return (
+              <tr key={`r{$el.Id}`}>
+                <td key={el.id}>{el.id}</td>
+                <td key={el.name}>{el.name}</td>
+                <td key={el.phoneNumber}>{el.phoneNumber}</td>
+              </tr>
+            );
+          }, this)}
         </tbody>
       </table>
     );
