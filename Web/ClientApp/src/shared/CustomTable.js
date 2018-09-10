@@ -4,23 +4,27 @@ export class CustomTable extends Component {
   constructor(props) {
     super(props);
     const srcArray = props.src ? props.src : [];
-    this.state = { src: srcArray };
+    const columns = srcArray.length ? Object.keys(srcArray[0]) : null;
+    this.state = { src: srcArray, columns: columns };
   }
   render() {
     return (
       <table>
         <thead key="thead">
           <tr>
-            <th> the drag drop table</th>
+            {this.state.columns.map(function(col) {
+              const camelCol = col.replace(/^\w/, c => c.toUpperCase());
+              return <td key={`h${col}`}>{camelCol}</td>;
+            }, this)}
           </tr>
         </thead>
         <tbody key="tbody">
           {this.state.src.map(function(el) {
             return (
               <tr key={`r{$el.Id}`}>
-                <td key={el.id}>{el.id}</td>
-                <td key={el.name}>{el.name}</td>
-                <td key={el.phoneNumber}>{el.phoneNumber}</td>
+                {this.state.columns.map(function(col) {
+                  return <td key={el[col]}>{el[col]}</td>;
+                })}
               </tr>
             );
           }, this)}
