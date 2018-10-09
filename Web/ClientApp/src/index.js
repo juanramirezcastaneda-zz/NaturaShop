@@ -19,7 +19,6 @@ const initialState = window.initialReduxState;
 
 const store = configureStore(history, initialState);
 const rootElement = document.getElementById("root");
-
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>

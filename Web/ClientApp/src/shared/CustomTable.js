@@ -12,22 +12,24 @@ export class CustomTable extends Component {
       <table>
         <thead key="thead">
           <tr>
-            {this.state.columns.map(function(col) {
-              const camelCol = col.replace(/^\w/, c => c.toUpperCase());
-              return <td key={`h${col}`}>{camelCol}</td>;
-            }, this)}
+            {this.state.columns &&
+              this.state.columns.map(function(col) {
+                const camelCol = col.replace(/^\w/, c => c.toUpperCase());
+                return <td key={`h${col}`}>{camelCol}</td>;
+              }, this)}
           </tr>
         </thead>
         <tbody key="tbody">
-          {this.state.src.map(function(el) {
-            return (
-              <tr key={`r{$el.Id}`}>
-                {this.state.columns.map(function(col) {
-                  return <td key={el[col]}>{el[col]}</td>;
-                })}
-              </tr>
-            );
-          }, this)}
+          {this.state.src &&
+            this.state.src.map(function(el) {
+              return (
+                <tr key={`r{$el.Id}`}>
+                  {this.state.columns.map(function(col) {
+                    return <td key={el[col]}>{el[col]}</td>;
+                  })}
+                </tr>
+              );
+            }, this)}
         </tbody>
       </table>
     );
