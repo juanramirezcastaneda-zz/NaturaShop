@@ -5,6 +5,7 @@ import * as Counter from "./Counter";
 import * as Customers from "./Customers";
 import * as Partners from "./Partners";
 import * as Products from "./Products";
+import * as Sales from "./Sales";
 import * as WeatherForecasts from "./WeatherForecasts";
 
 export default function configureStore(history, initialState) {
@@ -13,6 +14,7 @@ export default function configureStore(history, initialState) {
     customers: Customers.reducer,
     partners: Partners.reducer,
     products: Products.reducer,
+    sales: Sales.reducer,
     weatherForecasts: WeatherForecasts.reducer
   };
 
