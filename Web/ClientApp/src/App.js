@@ -5,7 +5,7 @@ import { Home } from "./components/Home";
 import { FetchData } from "./components/FetchData";
 import Counter from "./components/Counter";
 import Customers from "./customers/Customers";
-import { Partners } from "./partners/Partners";
+import Partners from "./partners/Partners";
 import { Products } from "./products/Products";
 import { Sales } from "./sales/Sales";
 
