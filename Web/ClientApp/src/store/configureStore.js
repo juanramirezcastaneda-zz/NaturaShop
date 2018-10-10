@@ -4,6 +4,7 @@ import { routerReducer, routerMiddleware } from "react-router-redux";
 import * as Counter from "./Counter";
 import * as Customers from "./Customers";
 import * as Partners from "./Partners";
+import * as Products from "./Products";
 import * as WeatherForecasts from "./WeatherForecasts";
 
 export default function configureStore(history, initialState) {
@@ -11,6 +12,7 @@ export default function configureStore(history, initialState) {
     counter: Counter.reducer,
     customers: Customers.reducer,
     partners: Partners.reducer,
+    products: Products.reducer,
     weatherForecasts: WeatherForecasts.reducer
   };
 
