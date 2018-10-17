@@ -16,18 +16,19 @@ export const actionCreators = {
 export const reducer = (state, action) => {
   state = state || initialState;
 
-  if (action.type === requestSalesType) {
-    return {
-      ...state,
-      isLoading: true
-    };
+  switch (action.type) {
+    case requestSalesType:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case receiveSalesType:
+      return {
+        ...state,
+        sales: action.sales,
+        isLoading: false
+      };
+    default:
+      return state;
   }
-  if (action.type === receiveSalesType) {
-    return {
-      ...state,
-      sales: action.sales,
-      isLoading: false
-    };
-  }
-  return state;
 };

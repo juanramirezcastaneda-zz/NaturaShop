@@ -16,7 +16,7 @@ class Sales extends React.Component {
       </p>
     ) : (
       <div>
-        <CustomTable src={this.props.sales} />
+        <CustomTable src={this.props.sales} prefix={"sl"} />
       </div>
     );
     return (
