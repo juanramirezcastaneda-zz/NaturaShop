@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./CustomTable.css";
 
 export class CustomTable extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export class CustomTable extends Component {
           <tr>
             {this.state.columns.map(function(col) {
               const camelCol = col.replace(/^\w/, c => c.toUpperCase());
-              return <td key={`h${this.state.prefix}${col}`}>{camelCol}</td>;
+              return <th key={`h${this.state.prefix}${col}`}>{camelCol}</th>;
             }, this)}
           </tr>
         </thead>
