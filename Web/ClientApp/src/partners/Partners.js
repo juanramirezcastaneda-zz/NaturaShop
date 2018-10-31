@@ -19,12 +19,7 @@ class Partners extends React.Component {
         <CustomTable src={this.props.partners} prefix={"prt"} />
       </div>
     );
-    return (
-      <div>
-        <label>Partners</label>
-        {content}
-      </div>
-    );
+    return <div>{content}</div>;
   }
 }
 

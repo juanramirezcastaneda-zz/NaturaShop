@@ -19,12 +19,7 @@ class Customers extends React.Component {
         <CustomTable src={this.props.customers} prefix={"ctm"} />
       </div>
     );
-    return (
-      <div>
-        <label>Customers</label>
-        {content}
-      </div>
-    );
+    return <div>{content}</div>;
   }
 }
 
