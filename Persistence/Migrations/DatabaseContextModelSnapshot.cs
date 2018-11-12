@@ -38,7 +38,7 @@ namespace Persistence.Migrations
                     b.ToTable("Customers");
 
                     b.HasData(
-                        new { Id = 2, LastModified = new DateTime(2018, 7, 18, 10, 6, 28, 185, DateTimeKind.Local), Name = "TestCustomer", PhoneNumber = 7L }
+                        new { Id = 2, LastModified = new DateTime(2018, 8, 3, 17, 36, 43, 939, DateTimeKind.Local), Name = "TestCustomer", PhoneNumber = 7L }
                     );
                 });
 
@@ -61,7 +61,7 @@ namespace Persistence.Migrations
                     b.ToTable("Partners");
 
                     b.HasData(
-                        new { Id = 3, LastModified = new DateTime(2018, 7, 18, 10, 6, 28, 188, DateTimeKind.Local), Name = "TestPartner", PhoneNumber = 7L }
+                        new { Id = 3, LastModified = new DateTime(2018, 8, 3, 17, 36, 43, 955, DateTimeKind.Local), Name = "TestPartner", PhoneNumber = 7L }
                     );
                 });
 
@@ -77,7 +77,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
@@ -85,7 +85,8 @@ namespace Persistence.Migrations
                     b.ToTable("Products");
 
                     b.HasData(
-                        new { Id = 4, LastModified = new DateTime(2018, 7, 18, 10, 6, 28, 191, DateTimeKind.Local), Name = "TestProduct", Price = 3m }
+                        new { Id = 1, LastModified = new DateTime(2018, 8, 3, 17, 36, 43, 955, DateTimeKind.Local), Name = "TestProduct", UnitPrice = 3m },
+                        new { Id = 2, LastModified = new DateTime(2018, 8, 2, 17, 36, 43, 955, DateTimeKind.Local), Name = "TestProduct2", UnitPrice = 2m }
                     );
                 });
 
@@ -103,14 +104,8 @@ namespace Persistence.Migrations
 
                     b.Property<int?>("PartnerId");
 
-                    b.Property<int?>("ProductId");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<decimal>("TotalPrice")
+                    b.Property<decimal>("TotalSalePrice")
                         .HasColumnType("decimal(5,2)");
-
-                    b.Property<decimal>("UnitPrice");
 
                     b.HasKey("Id");
 
@@ -118,12 +113,35 @@ namespace Persistence.Migrations
 
                     b.HasIndex("PartnerId");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("Sales");
 
                     b.HasData(
-                        new { Id = 1, CustomerId = 2, Date = new DateTime(2018, 7, 15, 0, 0, 0, 0, DateTimeKind.Local), LastModified = new DateTime(2018, 7, 15, 0, 0, 0, 0, DateTimeKind.Local), PartnerId = 3, ProductId = 4, Quantity = 1, TotalPrice = 3m, UnitPrice = 5m }
+                        new { Id = 1, CustomerId = 2, Date = new DateTime(2018, 7, 31, 0, 0, 0, 0, DateTimeKind.Local), LastModified = new DateTime(2018, 7, 31, 0, 0, 0, 0, DateTimeKind.Local), PartnerId = 3, TotalSalePrice = 7.00m }
+                    );
+                });
+
+            modelBuilder.Entity("Domain.Sales.SaleProduct", b =>
+                {
+                    b.Property<int>("SaleId");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<DateTime>("LastModified");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<decimal>("TotalProductPrice")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.HasKey("SaleId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("SaleProduct");
+
+                    b.HasData(
+                        new { SaleId = 1, ProductId = 1, LastModified = new DateTime(2018, 8, 3, 17, 36, 43, 955, DateTimeKind.Local), Quantity = 1, TotalProductPrice = 3m },
+                        new { SaleId = 1, ProductId = 2, LastModified = new DateTime(2018, 8, 3, 17, 36, 43, 955, DateTimeKind.Local), Quantity = 2, TotalProductPrice = 4m }
                     );
                 });
 
@@ -136,10 +154,19 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Partners.Partner", "Partner")
                         .WithMany()
                         .HasForeignKey("PartnerId");
+                });
 
+            modelBuilder.Entity("Domain.Sales.SaleProduct", b =>
+                {
                     b.HasOne("Domain.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
+                        .WithMany("SaleProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Domain.Sales.Sale", "Sale")
+                        .WithMany("SaleProducts")
+                        .HasForeignKey("SaleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

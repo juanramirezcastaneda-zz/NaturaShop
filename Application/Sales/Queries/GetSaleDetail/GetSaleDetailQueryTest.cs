@@ -27,8 +27,7 @@ namespace Application.Sales.Queries.GetSaleDetail
 		private const int CostumerId = 9;
 		private const int SaleQuantity = 2;
 		private const int ProductPrice = 10;
-		private const decimal SaleUnitPrice = 1.23m;
-		private const decimal SaleTotalPrice = 2.46m;
+		private const decimal SaleTotalPrice = 10;
 		private const uint PartnerPhoneNumber = 3117336812;
 		private const uint CostumerPhoneNumber = 3103931978;
 		private readonly DateTime _saleDateTime = new DateTime(2017, 9, 9);
@@ -43,14 +42,23 @@ namespace Application.Sales.Queries.GetSaleDetail
 				PhoneNumber = PartnerPhoneNumber
 			};
 
-			var product = new Product
-			{
-				Id = ProductId,
-				Name = ProductName,
-				Price = ProductPrice
-			};
+            var product = new Product
+            {
+                Id = ProductId,
+                Name = ProductName,
+                UnitPrice = ProductPrice
+            };
 
-			var costumer = new Customer
+            var saleProducts = new List<SaleProduct>{
+                new SaleProduct{
+                    Product = product,
+                    ProductId = product.Id,
+					Quantity = 1,
+					TotalProductPrice = product.UnitPrice * 1
+                }
+            };
+
+            var costumer = new Customer
 			{
 				Id = CostumerId,
 				Name = CustomerName,
@@ -61,19 +69,15 @@ namespace Application.Sales.Queries.GetSaleDetail
 			{
 				Id = SaleId,
 				Partner = partner,
-				Product = product,
-				UnitPrice = SaleUnitPrice,
+				SaleProducts = saleProducts,
 				Date = _saleDateTime,
-				Quantity = SaleQuantity,
 				Customer = costumer
 			};
 
-			var saleList = new List<Sale> {sale};
-			
 			_mocker = new AutoMoqer();
 			_mocker.GetMock<ISalesRepository>()
-				.Setup(sr => sr.GetAll())
-				.Returns(saleList.AsQueryable());
+				.Setup(sr => sr.Get(SaleId))
+				.Returns(sale);
 			_query = _mocker.Create<GetSaleDetailQuery>();
 		}
 
@@ -85,12 +89,9 @@ namespace Application.Sales.Queries.GetSaleDetail
 			Assert.AreEqual(detailModel.Id, SaleId);
 			Assert.AreEqual(detailModel.Date, _saleDateTime);
 			Assert.AreEqual(detailModel.CustomerName, CustomerName);
-			Assert.AreEqual(detailModel.Quantity, SaleQuantity);
 			Assert.AreEqual(detailModel.PartnerName, PartnerName);
 			Assert.AreEqual(detailModel.PartnerPhoneNumber, PartnerPhoneNumber);
-			Assert.AreEqual(detailModel.ProductName, ProductName);
-			Assert.AreEqual(detailModel.UnitPrice, SaleUnitPrice);
-			Assert.AreEqual(detailModel.TotalPrice, SaleTotalPrice);
+			Assert.AreEqual(detailModel.TotalSalePrice, SaleTotalPrice);
 		}
 	}
 }

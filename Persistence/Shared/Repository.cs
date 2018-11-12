@@ -14,12 +14,12 @@ namespace Persistence.Shared
 			_database = database;
 		}
 
-		public IQueryable<T> GetAll()
+		public virtual IQueryable<T> GetAll()
 		{
 			return _database.Set<T>();
 		}
 
-		public T Get(int id)
+		public virtual T Get(int id)
 		{
 			return _database.Set<T>().Single(ent => ent.Id == id);
 		}

@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Application.Interfaces;
 using Application.Interfaces.Persistence;
+using Domain.Products;
 
 namespace Application.Sales.Queries.GetSaleDetail
 {
@@ -15,21 +17,24 @@ namespace Application.Sales.Queries.GetSaleDetail
 
 		public SaleDetailModel Execute(int saleId)
 		{
-			var saleDetail = _salesRepository.GetAll().Where(s => s.Id == saleId)
-				.Select(sale => new SaleDetailModel
-				{
-					Id = sale.Id,
-					Date = sale.Date,
-					PartnerName = sale.Partner.Name,
-					PartnerPhoneNumber = sale.Partner.PhoneNumber,
-					CustomerName = sale.Customer.Name,
-					ProductName = sale.Product.Name,
-					Quantity = sale.Quantity,
-					UnitPrice = sale.UnitPrice,
-					TotalPrice = sale.TotalPrice
-				}).Single();
+			var saleDetail = _salesRepository.Get(saleId);
+			var products = saleDetail.SaleProducts.Select(sp => new ProductSaleDetailModel{
+				Id = sp.Product.Id,
+				Name = sp.Product.Name,
+				UnitPrice = sp.Product.UnitPrice,
+				Quantity = sp.Quantity
+			}).ToList();
 
-			return saleDetail;
+			var saleDetailModel = new SaleDetailModel{
+				Id = saleDetail.Id,
+				Products = products,
+				Date = saleDetail.Date,
+				CustomerName = saleDetail.Customer.Name,
+				PartnerName = saleDetail.Partner.Name,
+				PartnerPhoneNumber = saleDetail.Partner.PhoneNumber,
+				TotalSalePrice = saleDetail.TotalSalePrice
+			};
+			return saleDetailModel;
 		}
 	}
 }
