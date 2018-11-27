@@ -1,8 +1,15 @@
 import React from "react";
+import { css } from "react-emotion";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../store/Customers";
 import { CustomTable } from "../shared/CustomTable";
+import { actionCreators } from "../store/Customers";
+import BounceLoader from "react-spinners/BounceLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
 
 class Customers extends React.Component {
   componentWillMount() {
@@ -11,9 +18,15 @@ class Customers extends React.Component {
 
   render() {
     let content = this.props.isLoading ? (
-      <p>
-        <em>Loading...</em>
-      </p>
+      <div className="sweet-loading">
+        <BounceLoader
+          className={override}
+          sizeUnit={"px"}
+          size={80}
+          color={"#2c2c2c"}
+          loading={this.props.loading}
+        />
+      </div>
     ) : (
       <div>
         <CustomTable src={this.props.customers} prefix={"ctm"} />

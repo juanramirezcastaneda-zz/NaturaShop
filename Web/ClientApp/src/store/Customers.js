@@ -10,7 +10,10 @@ export const actionCreators = {
     const response = await fetch(url);
     const customers = await response.json();
 
-    dispatch({ type: receiveCustomersType, customers });
+    // Remove timeout after creating spinner
+    setTimeout(() => {
+      dispatch({ type: receiveCustomersType, customers });
+    }, 10000);
   }
 };
 export const reducer = (state, action) => {
