@@ -2,6 +2,10 @@
 
 Natura shop is a personal project intended to help women tracking their catalog products sells.
 
+## Motivation
+
+This project has started as a vehicle to practice react and create an integration with .net core, entity framework core. Besides helping my wife tracking her sells :).
+
 ## Getting Started
 
 NaturaShop solution is the one used to create all the database interactions using entity framework, but the main project to run the solution is the Web Project which is one created using [create-react-app](https://github.com/facebook/create-react-app).
