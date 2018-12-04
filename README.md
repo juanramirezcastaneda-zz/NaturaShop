@@ -14,7 +14,12 @@ dotnet ef --startup-project ../NaturaShop migrations add jointable
 
 ## Prerequisites
 
-Dotnet core [sdk](https://dotnet.microsoft.com/download).
+dotnet core [sdk](https://dotnet.microsoft.com/download).
+node.js -> [node package manager](https://nodejs.org/en/download/).
+
+## Installation
+
+Run npm install in ClientApp folder within Web Project
 
 ## Build With
 
