@@ -12,4 +12,4 @@ Natura shop is a personal project intended to help women tracking their catalog 
 
 ## Authors
 
--\* **Juan Sebastian Ramirez** - [juanramirezcastaneda](https://github.com/juanramirezcastaneda)
+- **Juan Sebastian Ramirez** - [juanramirezcastaneda](https://github.com/juanramirezcastaneda)
