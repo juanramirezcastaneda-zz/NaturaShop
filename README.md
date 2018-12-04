@@ -14,7 +14,7 @@ dotnet ef --startup-project ../NaturaShop migrations add jointable
 
 ## Prerequisites
 
-Dotnet core sdk (https://dotnet.microsoft.com/download).
+Dotnet core [sdk](https://dotnet.microsoft.com/download).
 
 ## Build With
 
