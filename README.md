@@ -10,7 +10,7 @@ This project has started as a vehicle to practice react and create an integratio
 
 NaturaShop solution is the one used to create all the database interactions using entity framework, but the main project to run the solution is the Web Project which is one created using [create-react-app](https://github.com/facebook/create-react-app).
 
-If one wants to create a new migration to the database named jointable, it should be done typing the following commande in the command line and located
+If one wants to create a new migration to the database named jointable, it should be done typing the following command in the command line while located
 in the Persistence project:
 
 ```
