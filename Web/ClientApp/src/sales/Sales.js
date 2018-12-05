@@ -16,7 +16,12 @@ class Sales extends React.Component {
       </p>
     ) : (
       <div>
-        <CustomTable src={this.props.sales} prefix={"sl"} isLink={true} />
+        <CustomTable
+          src={this.props.sales}
+          prefix={"sl"}
+          isLink={true}
+          linkRoute={"/sales"}
+        />
       </div>
     );
     return <div>{content}</div>;

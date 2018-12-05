@@ -6,6 +6,7 @@ import Customers from "./customers/Customers";
 import Partners from "./partners/Partners";
 import Products from "./products/Products";
 import Sales from "./sales/Sales";
+import SalesDetail from "./sales/Sales";
 
 export default class App extends Component {
   render() {
