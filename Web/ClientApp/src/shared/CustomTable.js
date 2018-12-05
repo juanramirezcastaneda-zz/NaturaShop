@@ -33,7 +33,7 @@ export class CustomTable extends Component {
             }
             const idIndex = this.state.columns.findIndex(hasIdColumn, this);
             const isLinkId = idIndex !== -1 && this.state.isLinkId;
-            // debugger;
+
             return (
               <tr key={`r${this.state.prefix + el.id}`}>
                 {this.state.columns.map(function(col, index) {
