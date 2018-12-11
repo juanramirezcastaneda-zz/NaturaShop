@@ -20,7 +20,7 @@ class Sales extends React.Component {
           src={this.props.sales}
           prefix={"sl"}
           isLink={true}
-          linkRoute={"/sales"}
+          linkRoute={"/saledetail"}
         />
       </div>
     );

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 export class SaleDetail extends Component {
+  componentDidMount() {}
+
   render() {
     return (
       <div>
@@ -9,3 +12,5 @@ export class SaleDetail extends Component {
     );
   }
 }
+
+export default connect(state => state.sales)(SaleDetail);
