@@ -6,7 +6,7 @@ import Customers from "./customers/Customers";
 import Partners from "./partners/Partners";
 import Products from "./products/Products";
 import Sales from "./sales/Sales";
-import SalesDetail from "./sales/SaleDetail";
+import SaleDetail from "./sales/SaleDetail";
 
 export default class App extends Component {
   render() {
@@ -16,8 +16,8 @@ export default class App extends Component {
         <Route path="/customers" component={Customers} />
         <Route path="/partners" component={Partners} />
         <Route path="/products" component={Products} />
-        <Route path="/sales" component={Sales} />
-        <Route path="/saledetail/:id" component={SalesDetail} />
+        <Route path="/sales" exact component={Sales} />
+        <Route path="/sales/:id" component={SaleDetail} />
       </Layout>
     );
   }
