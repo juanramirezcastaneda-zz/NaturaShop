@@ -7,6 +7,7 @@ import Partners from "./partners/Partners";
 import Products from "./products/Products";
 import Sales from "./sales/Sales";
 import SaleDetail from "./sales/SaleDetail";
+import AddSale from "./sales/AddSale";
 
 export default class App extends Component {
   render() {
@@ -18,6 +19,7 @@ export default class App extends Component {
         <Route path="/products" component={Products} />
         <Route path="/sales" exact component={Sales} />
         <Route path="/sales/:id" component={SaleDetail} />
+        <Route path="/addSale" exact component={AddSale} />
       </Layout>
     );
   }
