@@ -24,7 +24,7 @@ export class AddSale extends Component {
               Customer Name
             </Col>
             <Col sm={10}>
-              <FormControl componentClass="select" placeholder="select">
+              <FormControl componentClass="select" placeholder="Name">
                 <option value="">Select</option>
                 {this.props.customers.map(customer => {
                   return <option value="">{customer.name}</option>;
