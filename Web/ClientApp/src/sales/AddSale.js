@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { actionCreators } from "../store/Customers";
 
 export class AddSale extends Component {
   componentDidMount() {}
