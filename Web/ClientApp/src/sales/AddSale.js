@@ -1,5 +1,13 @@
 import React, { Component } from "react";
+import {
+  Col,
+  ControlLabel,
+  Form,
+  FormControl,
+  FormGroup
+} from "react-bootstrap";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 export class AddSale extends Component {
   componentDidMount() {}
@@ -7,10 +15,33 @@ export class AddSale extends Component {
   render() {
     return (
       <div>
-        <h1>This is the add sale component</h1>
+        <Form horizontal>
+          <FormGroup controlId="nsCustomerName">
+            <Col componentClass={ControlLabel} sm={2}>
+              Customer Name
+            </Col>
+            <Col sm={10}>
+              <FormControl componentClass="select" placeholder="select">
+                <option value="">Select</option>
+                <option value="other">...</option>
+              </FormControl>
+            </Col>
+          </FormGroup>
+          <FormGroup controlId="nsCustomerEmail">
+            <Col componentClass={ControlLabel} sm={2}>
+              Customer Email
+            </Col>
+            <Col sm={10}>
+              <FormControl placeholder="Email" />
+            </Col>
+          </FormGroup>
+        </Form>
       </div>
     );
   }
 }
 
-export default connect(state => state.sales)(AddSale);
+export default connect(
+  state => state.customers,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)(AddSale);
