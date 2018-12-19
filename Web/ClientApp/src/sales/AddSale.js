@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators as customerActionCreators } from "../store/Customers";
 import { actionCreators as partnersActionCreators } from "../store/Partners";
+import { actionCreators as productsActionCreators } from "../store/Products";
 
 export class AddSale extends Component {
   componentDidMount() {
@@ -72,12 +73,13 @@ export class AddSale extends Component {
 }
 
 export default connect(
-  state => ({ ...state.customers, ...state.partners }),
+  state => ({ ...state.customers, ...state.partners, ...state.products }),
   dispatch =>
     bindActionCreators(
       {
         ...customerActionCreators,
-        ...partnersActionCreators
+        ...partnersActionCreators,
+        ...productsActionCreators
       },
       dispatch
     )
