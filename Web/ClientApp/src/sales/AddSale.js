@@ -4,7 +4,8 @@ import {
   ControlLabel,
   Form,
   FormControl,
-  FormGroup
+  FormGroup,
+  Label
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -20,6 +21,7 @@ export class AddSale extends Component {
   render() {
     return (
       <div>
+        <Label>New Sale</Label>
         <Form horizontal>
           <FormGroup controlId="nsCustomerName">
             <Col componentClass={ControlLabel} sm={2}>
