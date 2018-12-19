@@ -8,11 +8,13 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../store/Customers";
+import { actionCreators as customerActionCreators } from "../store/Customers";
+import { actionCreators as partnersActionCreators } from "../store/Partners";
 
 export class AddSale extends Component {
   componentDidMount() {
     this.props.requestCustomers();
+    this.props.requestPartners();
   }
 
   render() {
@@ -27,7 +29,28 @@ export class AddSale extends Component {
               <FormControl componentClass="select" placeholder="Name">
                 <option value="">Select</option>
                 {this.props.customers.map(customer => {
-                  return <option value="">{customer.name}</option>;
+                  return (
+                    <option key={customer.id} value="">
+                      {customer.name}
+                    </option>
+                  );
+                })}
+              </FormControl>
+            </Col>
+          </FormGroup>
+          <FormGroup controlId="nsPartnerName">
+            <Col componentClass={ControlLabel} sm={2}>
+              Partner Name
+            </Col>
+            <Col sm={10}>
+              <FormControl componentClass="select" placeholder="Name">
+                <option value="">Select</option>
+                {this.props.partners.map(partner => {
+                  return (
+                    <option key={partner.id} value="">
+                      {partner.name}
+                    </option>
+                  );
                 })}
               </FormControl>
             </Col>
@@ -47,6 +70,13 @@ export class AddSale extends Component {
 }
 
 export default connect(
-  state => state.customers,
-  dispatch => bindActionCreators(actionCreators, dispatch)
+  state => ({ ...state.customers, ...state.partners }),
+  dispatch =>
+    bindActionCreators(
+      {
+        ...customerActionCreators,
+        ...partnersActionCreators
+      },
+      dispatch
+    )
 )(AddSale);
