@@ -4,8 +4,7 @@ import {
   ControlLabel,
   Form,
   FormControl,
-  FormGroup,
-  Label
+  FormGroup
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -17,12 +16,12 @@ export class AddSale extends Component {
   componentDidMount() {
     this.props.requestCustomers();
     this.props.requestPartners();
+    this.props.requestProducts();
   }
 
   render() {
     return (
       <div>
-        <Label>New Sale</Label>
         <Form horizontal>
           <FormGroup controlId="nsCustomerName">
             <Col componentClass={ControlLabel} sm={2}>
@@ -64,6 +63,23 @@ export class AddSale extends Component {
             </Col>
             <Col sm={10}>
               <FormControl placeholder="Email" />
+            </Col>
+          </FormGroup>
+          <FormGroup controlId="nsProductName">
+            <Col componentClass={ControlLabel} sm={2}>
+              Product Name
+            </Col>
+            <Col sm={10}>
+              <FormControl componentClass="select" placeholder="Product Name">
+                <option value="">Select</option>
+                {this.props.products.map(product => {
+                  return (
+                    <option key={product.id} value="">
+                      {product.name}
+                    </option>
+                  );
+                })}
+              </FormControl>
             </Col>
           </FormGroup>
         </Form>

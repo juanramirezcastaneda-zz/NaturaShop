@@ -1,5 +1,5 @@
-const requestProductsType = "REQUEST_PARTNERS";
-const receiveProductsType = "RECEIVE_PARTNERS";
+const requestProductsType = "REQUEST_PRODUCTS";
+const receiveProductsType = "RECEIVE_PRODUCTS";
 const initialState = { products: [], isLoading: false };
 
 export const actionCreators = {
