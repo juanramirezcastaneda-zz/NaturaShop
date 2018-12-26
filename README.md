@@ -24,7 +24,14 @@ node.js -> [node package manager](https://nodejs.org/en/download/).
 
 ## Installation
 
-Run npm install in ClientApp folder within Web Project
+Look for the connection string key in the appsettings.json file in the NaturaShop project -> (MVC).
+
+```
+"NaturaShopDatabase": "Initial Catalog=NaturaSale;Integrated Security=SSPI;Persist Security Info=False;Data Source=M3078483\\SQLEXPRESS"
+```
+
+Change the source value to the sql server instance on your local machine.
+Run npm install in ClientApp folder within Web project.
 
 ## Build With
 
