@@ -6,18 +6,20 @@ import Customers from "./customers/Customers";
 import Partners from "./partners/Partners";
 import Products from "./products/Products";
 import Sales from "./sales/Sales";
+import SaleDetail from "./sales/SaleDetail";
+import AddSale from "./sales/AddSale";
 
 export default class App extends Component {
-  displayName = App.name;
-
   render() {
     return (
       <Layout>
-        <Route exact path="/" component={Home} />
+        <Route path="/" exact component={Home} />
         <Route path="/customers" component={Customers} />
         <Route path="/partners" component={Partners} />
         <Route path="/products" component={Products} />
-        <Route path="/sales" component={Sales} />
+        <Route path="/sales" exact component={Sales} />
+        <Route path="/sales/:id" component={SaleDetail} />
+        <Route path="/addSale" exact component={AddSale} />
       </Layout>
     );
   }

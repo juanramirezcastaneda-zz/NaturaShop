@@ -1,10 +1,10 @@
 import React from "react";
 import { css } from "react-emotion";
 import { connect } from "react-redux";
+import BounceLoader from "react-spinners/BounceLoader";
 import { bindActionCreators } from "redux";
 import { CustomTable } from "../shared/CustomTable";
 import { actionCreators } from "../store/Customers";
-import BounceLoader from "react-spinners/BounceLoader";
 
 const override = css`
   display: block;

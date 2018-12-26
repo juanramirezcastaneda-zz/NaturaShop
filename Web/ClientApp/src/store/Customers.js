@@ -13,7 +13,7 @@ export const actionCreators = {
     // Remove timeout after creating spinner
     setTimeout(() => {
       dispatch({ type: receiveCustomersType, customers });
-    }, 10000);
+    }, 5000);
   }
 };
 export const reducer = (state, action) => {
