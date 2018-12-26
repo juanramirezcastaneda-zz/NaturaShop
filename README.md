@@ -32,6 +32,7 @@ Look for the connection string key in the appsettings.json file in the NaturaSho
 
 Change the source value to the sql server instance on your local machine.
 Run npm install in ClientApp folder within Web project.
+Run dotnet build in the root to compile the solution.
 
 ## Build With
 
