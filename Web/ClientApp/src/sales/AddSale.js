@@ -32,6 +32,8 @@ export class AddSale extends Component {
     this.saveNewSale = this.saveNewSale.bind(this);
     this.handleProductChange = this.handleProductChange.bind(this);
     this.handleCustomerChange = this.handleCustomerChange.bind(this);
+    this.handlePartnerChange = this.handlePartnerChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
   }
 
   saveNewSale() {
@@ -44,6 +46,14 @@ export class AddSale extends Component {
 
   handleCustomerChange(evt) {
     this.setState({ selectedCustomer: evt.target.value });
+  }
+
+  handlePartnerChange(evt) {
+    this.setState({ selectedPartner: evt.target.value });
+  }
+
+  handleEmailChange(evt) {
+    this.setState({ selectedEmail: evt.target.value });
   }
 
   render() {
@@ -76,11 +86,15 @@ export class AddSale extends Component {
               Partner Name
             </Col>
             <Col sm={10}>
-              <FormControl componentClass="select" placeholder="Name">
+              <FormControl
+                componentClass="select"
+                placeholder="Name"
+                onChange={this.handlePartnerChange}
+              >
                 <option value="">Select</option>
                 {this.props.partners.map(partner => {
                   return (
-                    <option key={partner.id} value="">
+                    <option key={partner.id} value={partner.id}>
                       {partner.name}
                     </option>
                   );
@@ -93,7 +107,11 @@ export class AddSale extends Component {
               Customer Email
             </Col>
             <Col sm={10}>
-              <FormControl type="email" placeholder="Email" />
+              <FormControl
+                type="email"
+                placeholder="Email"
+                onChange={this.handleEmailChange}
+              />
             </Col>
           </FormGroup>
           <FormGroup controlId="nsProductName">
