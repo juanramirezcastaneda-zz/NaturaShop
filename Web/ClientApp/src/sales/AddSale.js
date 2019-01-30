@@ -20,7 +20,8 @@ export class AddSale extends Component {
       selectedProduct: "",
       selectedCustomer: "",
       selectedPartner: "",
-      selectedQuantity: 0
+      selectedQuantity: 0,
+      selectedEmail: ""
     };
   }
 
@@ -30,6 +31,7 @@ export class AddSale extends Component {
     this.props.requestProducts();
     this.saveNewSale = this.saveNewSale.bind(this);
     this.handleProductChange = this.handleProductChange.bind(this);
+    this.handleCustomerChange = this.handleCustomerChange.bind(this);
   }
 
   saveNewSale() {
@@ -38,6 +40,10 @@ export class AddSale extends Component {
 
   handleProductChange(evt) {
     this.setState({ selectedProduct: evt.target.value });
+  }
+
+  handleCustomerChange(evt) {
+    this.setState({ selectedCustomer: evt.target.value });
   }
 
   render() {
@@ -49,11 +55,15 @@ export class AddSale extends Component {
               Customer Name
             </Col>
             <Col sm={10}>
-              <FormControl componentClass="select" placeholder="Name">
+              <FormControl
+                componentClass="select"
+                placeholder="Name"
+                onChange={this.handleCustomerChange}
+              >
                 <option value="">Select</option>
                 {this.props.customers.map(customer => {
                   return (
-                    <option key={customer.id} value="">
+                    <option key={customer.id} value={customer.id}>
                       {customer.name}
                     </option>
                   );
@@ -83,7 +93,7 @@ export class AddSale extends Component {
               Customer Email
             </Col>
             <Col sm={10}>
-              <FormControl placeholder="Email" />
+              <FormControl type="email" placeholder="Email" />
             </Col>
           </FormGroup>
           <FormGroup controlId="nsProductName">
@@ -116,9 +126,11 @@ export class AddSale extends Component {
             </Col>
           </FormGroup>
           <FormGroup className="add-row">
-            <Button bsStyle="primary" onClick={this.saveNewSale}>
-              Create Sale
-            </Button>
+            <Col sm={2}>
+              <Button bsStyle="primary" onClick={this.saveNewSale}>
+                Create Sale
+              </Button>
+            </Col>
           </FormGroup>
         </Form>
       </div>
