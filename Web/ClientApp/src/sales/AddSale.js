@@ -34,10 +34,31 @@ export class AddSale extends Component {
     this.handleCustomerChange = this.handleCustomerChange.bind(this);
     this.handlePartnerChange = this.handlePartnerChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
   }
 
   saveNewSale() {
-    console.log(this.props);
+    const productQuantities = {};
+    productQuantities[this.state.selectedProduct] = this.state.selectedQuantity;
+    const saleViewModel = JSON.stringify({
+      Sale: {
+        CustomerId: this.state.selectedCustomer,
+        PartnerId: this.state.selectedPartner,
+        ProductIdsQuantities: productQuantities
+      }
+    });
+
+    fetch("http://localhost:63165/api/Sales", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: saleViewModel
+    }).then(res => {
+      console.log("Done");
+      console.log(res);
+    });
   }
 
   handleProductChange(evt) {
@@ -54,6 +75,10 @@ export class AddSale extends Component {
 
   handleEmailChange(evt) {
     this.setState({ selectedEmail: evt.target.value });
+  }
+
+  handleQuantityChange(evt) {
+    this.setState({ selectedQuantity: evt.target.value });
   }
 
   render() {
@@ -140,7 +165,11 @@ export class AddSale extends Component {
               Product Quantity
             </Col>
             <Col sm={2}>
-              <FormControl type="number" placeholder="Product Quantity" />
+              <FormControl
+                type="number"
+                placeholder="Product Quantity"
+                onChange={this.handleQuantityChange}
+              />
             </Col>
           </FormGroup>
           <FormGroup className="add-row">
